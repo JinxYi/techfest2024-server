@@ -76,7 +76,6 @@ def summarize():
         cursor.execute("INSERT INTO flashcards (question, answer) VALUES (%s, %s)", (None, out))
         mysql.connection.commit()
         cursor.close()
-
-        return out
+        return render_template('hackathon.html', out)
 
 
