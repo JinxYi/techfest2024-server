@@ -38,8 +38,11 @@
     </div>
     <form action="/summarize" method="post">
         <textarea name="notes" placeholder="Enter your notes" rows="5"></textarea>
-        <div class=word_count>Enter word count: </div><input type="number" name="word_count" placeholder=" "/>
-        <button type="submit" class="summary-button">Summarize now!</button>
+        <div class="action-wrapper">
+            <div class=word_count>Enter word count: </div>
+            <button type="submit" class="summary-button">Summarize now!</button>
+        </div>
+        <input type="number" name="word_count" placeholder=" " value="150"/>
     </form>
     {% if summarizer_result %}
             <div class="text">

@@ -94,6 +94,16 @@ def get_flashcard():
     return render_template('flashcards.html',flashcards_list=flashcards_list)
 
 
+# initlilizing summary model
+summary_model = T5ForConditionalGeneration.from_pretrained('t5-base')
+summary_tokenizer = T5Tokenizer.from_pretrained('t5-base')
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+summary_model = summary_model.to(device)
+
+# initializing flashcard model
+question_model = T5ForConditionalGeneration.from_pretrained('ramsrigouthamg/t5_squad_v1')
+question_tokenizer = T5Tokenizer.from_pretrained('ramsrigouthamg/t5_squad_v1')
+question_model = question_model.to(device)
 @app.route('/summarize', methods=['POST'])
 def summarize():
     if request.method == 'POST':
