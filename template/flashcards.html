@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Something</title>
     <link rel="stylesheet" type="text/css" href="static/style.css" />
 
-</head> 
+</head>
+
 <body>
-    <div id ="invertedcursor"></div>
+    <div id="invertedcursor"></div>
     <div class="sidebar">
         <div class="user-info">
-            <div class="circle"></div> 
+            <div class="circle">
+                <img src="static/user.png" alt="User image">
+            </div>
             <div class="user">User</div>
             <br>
             <div class="content-title">Database</div>
@@ -27,26 +31,29 @@
                 <a href="http://127.0.0.1:5000/">Summarizer</a>
             </div>
         </div>
-        </div>
+    </div>
 
     <div class="main-content">
-    <div class="header">Flashcards</div>
-    {% if flashcards_list %}
-            <div class="text">
-                {% for flashcard in flashcards_list %}
-                    {% if flashcard['question'] %}
-                            {{ flashcard['id'] }}.
-                            {{ flashcard['question'] }}
-                        <br>
-                        <span class="censored" onclick="revealText(this)">
-                            {{ flashcard['answer'] }}
-                        </span><br>
-                    {% endif %}
-                    </span>
-                {% endfor %}
-            </div>
+        <div class="logo-wrapper">
+            <img src="static/logo.jpg" alt="logo image">
+        </div>
+        <div class="header">Flashcards</div>
+        {% if flashcards_list %}
+        <div class="text">
+            {% for flashcard in flashcards_list %}
+            {% if flashcard['question'] %}
+            {{ flashcard['id'] }}.
+            {{ flashcard['question'] }}
+            <br>
+            <span class="censored" onclick="revealText(this)">
+                {{ flashcard['answer'] }}
+            </span><br>
+            {% endif %}
+            </span>
+            {% endfor %}
+        </div>
         {% endif %}
-    
+
     </div>
     <script>
         function revealText(element) {
@@ -54,4 +61,5 @@
         }
     </script>
 </body>
+
 </html>

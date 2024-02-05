@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot</title>
     <link rel="stylesheet" type="text/css" href="static/style.css" />
 </head>
+
 <body>
     <div class="sidebar">
         <div class="user-info">
-            <div class="circle"></div> 
+            <div class="circle">
+                <img src="static/user.png" alt="User image">
+            </div>
             <div class="user">User</div>
             <br>
             <div class="content-title">Database</div>
@@ -24,8 +28,11 @@
                 <a href="http://127.0.0.1:5000/">Summarizer</a>
             </div>
         </div>
-        </div>
+    </div>
     <div class="main-content">
+        <div class="logo-wrapper">
+            <img src="static/logo.jpg" alt="logo image">
+        </div>
         <div class="header">Chatbot</div>
         <div class="chat-messages" id="chat-messages">
             <div class="bot-message">
@@ -43,40 +50,41 @@
 
     <script>
         function sendMessage() {
-    var userInput = document.querySelector('textarea').value;
-    var userMessage = document.createElement('div');
-    userMessage.className = 'user-message';
-    userMessage.innerHTML = '<div class="message-bubble user-bubble">' + userInput + '</div>';
+            var userInput = document.querySelector('textarea').value;
+            var userMessage = document.createElement('div');
+            userMessage.className = 'user-message';
+            userMessage.innerHTML = '<div class="message-bubble user-bubble">' + userInput + '</div>';
 
-    // Append user message to the chat container
-    document.querySelector('.chat-messages').appendChild(userMessage);
+            // Append user message to the chat container
+            document.querySelector('.chat-messages').appendChild(userMessage);
 
-    // Send user input to the server
-    fetch('/send_message', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: 'user_input=' + userInput,
-    })
-    .then(response => response.json())
-    .then(data => {
-        var botResponse = document.createElement('div');
-        botResponse.className = 'bot-message';
-        botResponse.innerHTML = '<div class="message-bubble bot-bubble">' + data.response + '</div>';
+            // Send user input to the server
+            fetch('/send_message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'user_input=' + userInput,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    var botResponse = document.createElement('div');
+                    botResponse.className = 'bot-message';
+                    botResponse.innerHTML = '<div class="message-bubble bot-bubble">' + data.response + '</div>';
 
-        // Append bot response to the chat container
-        document.querySelector('.chat-messages').appendChild(botResponse);
+                    // Append bot response to the chat container
+                    document.querySelector('.chat-messages').appendChild(botResponse);
 
-        // Clear the textarea after sending the message
-        document.querySelector('textarea').value = '';
+                    // Clear the textarea after sending the message
+                    document.querySelector('textarea').value = '';
 
-        // Scroll to the bottom of the chat container
-        var chatContainer = document.querySelector('.chat-messages');
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-    });
-}
+                    // Scroll to the bottom of the chat container
+                    var chatContainer = document.querySelector('.chat-messages');
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                });
+        }
 
     </script>
 </body>
+
 </html>

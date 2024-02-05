@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Something</title>
     <link rel="stylesheet" type="text/css" href="static/style.css" />
 
-</head> 
+</head>
+
 <body>
-    <div id ="invertedcursor"></div>
+    <div id="invertedcursor"></div>
     <div class="sidebar">
         <div class="user-info">
-            <div class="circle"></div> 
+            <div class="circle">
+                <img src="static/user.png" alt="User image">
+            </div>
             <div class="user">User</div>
             <br>
             <div class="content-title">Database</div>
@@ -27,32 +31,37 @@
                 <a href="http://127.0.0.1:5000/">Summarizer</a>
             </div>
         </div>
-        </div>
+    </div>
 
     <div class="main-content">
-    <div class="header">Summarizer</div>
-    <div class="text">
-        Enter your notes below!<br>
-        Instructions:<br>
-        bal bakl ablala
-    </div>
-    <form action="/summarize" method="post">
-        <textarea name="notes" placeholder="Enter your notes" rows="5"></textarea>
-        <div class="action-wrapper">
-            <div class=word_count>Enter word count: </div>
-            <button type="submit" class="summary-button">Summarize now!</button>
+        <div class="logo-wrapper">
+            <img src="static/logo.jpg" alt="logo image">
         </div>
-        <input type="number" name="word_count" placeholder=" " value="150"/>
-    </form>
-    {% if summarizer_result %}
-            <div class="text">
-                Summary Result:<br>
-                {{ summarizer_result }}
+        <div class="header">Summarizer</div>
+        <div class="text">
+            Enter your notes below to summarize and generate flashcards!<br>
+            Instructions:<br>
+            Paste your notes into the text box below and click "Summarize". You will then receive a summary of your text
+            as well as flashcards for your revision.
+        </div>
+        <form action="/summarize" method="post">
+            <textarea name="notes" placeholder="Enter your notes" rows="5"></textarea>
+            <div class="action-wrapper">
+                <div class=word_count>Enter word count: </div>
+                <button type="submit" class="summary-button">Summarize now!</button>
             </div>
-            <form action="/flashcards" method="get">
-                <button type="submit" class="summary-button">Get Flashcards</button>
-            </form>
+            <input type="number" name="word_count" placeholder=" " value="150" />
+        </form>
+        {% if summarizer_result %}
+        <div class="text">
+            Summary Result:<br>
+            {{ summarizer_result }}
+        </div>
+        <form action="/flashcards" method="get">
+            <button type="submit" class="summary-button">Get Flashcards</button>
+        </form>
         {% endif %}
     </div>
 </body>
+
 </html>
