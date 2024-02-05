@@ -26,15 +26,25 @@ def create_mysql_table():
     cursor.execute(f"USE {database_name}")
 
     # Define the SQL query to create a table within the database
+    create_summarization_table_query = """
+    CREATE TABLE IF NOT EXISTS summary (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        summary TEXT
+    );
+    """
     create_table_query =  """
     CREATE TABLE IF NOT EXISTS flashcards (
         id INT AUTO_INCREMENT PRIMARY KEY,
         question TEXT,
-        answer TEXT
+        answer TEXT,
+        summarization_id INT NOT NULL,
+        FOREIGN KEY (summarization_id) REFERENCES summary(id)
     );
     """
+    
 
     # Execute the query
+    cursor.execute(create_summarization_table_query)
     cursor.execute(create_table_query)
 
     # Commit the changes to the MySQL server
