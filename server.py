@@ -1,15 +1,22 @@
 import os
 
 from flask import Flask
+from flask import render_template
+
+template_dir = os.path.abspath('./template')
 
 test_config = None
     # create and configure the app
-app = Flask(__name__, instance_relative_config=True)
+app = Flask(__name__, instance_relative_config=True, template_folder=template_dir)
 app.config.from_mapping(
     SECRET_KEY='HAHAHI',
     static_folder='static',
     DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
 )
+
+@app.route('/')
+def hack():
+    return render_template('hackathon.html')
 
 if test_config is None:
     # load the instance config, if it exists, when not testing

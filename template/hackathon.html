@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Something</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="static/style.css" />
 
 </head> 
 <body>
@@ -35,8 +35,9 @@
         Instructions:<br>
         bal bakl ablala
     </div>
-    <form action="xx" method="get">
+    <form action="/summarize" method="post">
         <textarea name="notes" placeholder="Enter your notes" rows="5"></textarea>
+        <div class=word_count>Enter word count: </div><input type="number" name="word_count" placeholder=" "/><br>
         <button type="submit" class="summary-button">Summarize now!</button>
     </form>
     <div class="text">
@@ -44,7 +45,7 @@
         Instructions:<br>
         chatbot
     </div>
-    <form action="xx" method="get">
+    <form action="/summarize" method="post">
         <textarea name="notes" placeholder="Enter your question" rows="5"></textarea>
         <button type="submit" class="summary-button">help</button>
     </form>
