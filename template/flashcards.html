@@ -19,7 +19,7 @@
                 <a href="http://127.0.0.1:5000/flashcards">Flashcards</a>
             </div>
             <br>
-            <div class="content-title">chatbot</div>
+            <div class="content-title">Tools</div>
             <div class="content">
                 <a href="http://127.0.0.1:5000/chatbot">Chatbot</a>
             </div>
@@ -30,26 +30,32 @@
         </div>
 
     <div class="main-content">
-    <div class="header">Summarizer</div>
-    <div class="text">
-        Enter your notes below!<br>
-        Instructions:<br>
-        bal bakl ablala
-    </div>
-    <form action="/summarize" method="post">
-        <textarea name="notes" placeholder="Enter your notes" rows="5"></textarea>
-        <div class=word_count>Enter word count: </div><input type="number" name="word_count" placeholder=" "/>
-        <button type="submit" class="summary-button">Summarize now!</button>
-    </form>
-    {% if summarizer_result %}
+    <div class="header">Flashcards</div>
+    {% if flashcards_list %}
             <div class="text">
-                Summary Result:<br>
-                {{ summarizer_result }}
+                {% for flashcard in flashcards_list %}
+                    {% if flashcard['question'] %}
+                            {{ flashcard['id'] }}.
+                            {{ flashcard['question'] }}
+                        <br>
+                        <span class="censored" onclick="revealText(this)">
+                            {{ flashcard['answer'] }}
+                        </span><br>
+                    {% endif %}
+                        {{ flashcard['id'] }}.
+                        Question: {{ flashcard['question'] }}<br>
+                        <span class="censored" onclick="revealText(this)">
+                        Answer: {{ flashcard['answer'] }}<br>
+                    </span>
+                {% endfor %}
             </div>
-            <form action="/flashcards" method="get">
-                <button type="submit" class="summary-button">Get Flashcards</button>
-            </form>
         {% endif %}
+    
     </div>
+    <script>
+        function revealText(element) {
+            element.classList.toggle('revealed');
+        }
+    </script>
 </body>
 </html>

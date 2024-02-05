@@ -69,12 +69,13 @@ body {
 .content{
     font-family: 'Aptos', sans-serif;
     color:#fff;
-    padding-left:15%;
+    margin-left:15%;
     padding-top:5%;
     display:flex;
     flex-direction: column;
-    line-height: 27px;
+    line-height: 37px;
     width:180%;
+    text-align: center;
 }
 
 .content:hover{
@@ -167,4 +168,85 @@ textarea {
     font-size: 16px;
     margin-left:3%;
     resize: vertical; /* Allow vertical resizing */
+}
+
+.censored {
+    color: transparent;
+    display: inline-block;
+    padding: 2px;
+    border-radius: 2px;
+    cursor: pointer;
+    
+}
+.revealed {
+    color: black;
+    transition: color 0.5s ease; 
+}
+
+a {
+    text-decoration: none;
+    color: inherit; /* This ensures the link color inherits from the parent element */
+}
+
+
+.chat-messages {
+    padding: 15px;
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+.user-message,
+.bot-message {
+    margin-bottom: 10px;
+}
+
+.user-message {
+    text-align: right;
+    /*color: #0066cc;*/
+    color:#ccc;
+}
+
+.bot-message {
+    text-align: left;
+    color: #61ea83;
+}
+
+.message-bubble {
+    padding: 10px;
+    border-radius: 8px;
+    display: inline-block;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+.user-bubble {
+    background-color: #333;
+}
+
+.bot-bubble {
+    background-color: #333;
+}
+
+.input-container {
+    padding: 15px;
+    border-top: 1px solid #ddd;
+}
+
+.input-container textarea {
+    width: 95%;
+    padding: 10px;
+    margin-right:30%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: none;
+}
+
+.input-container button {
+    margin-top: 5px;
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
